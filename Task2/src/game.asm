@@ -20,7 +20,7 @@
   ;;;
 
   ;;; Edit nmi here
-  DEC frame_rate_controller
+  ; DEC frame_rate_controller
   LDA frame_rate_controller
   CMP #$00
   BEQ update_player
@@ -70,6 +70,14 @@ load_palettes:
   BNE load_palettes
   ;;;
   ;;;
+
+  LDA PPUSTATUS
+	LDA #$22
+	STA PPUADDR
+	LDA #$C6
+	STA PPUADDR
+	LDX #$04
+	STX PPUDATA
 
 vblankwait:       ; wait for another vblank before continuing
   BIT PPUSTATUS
